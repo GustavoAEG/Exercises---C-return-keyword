@@ -9,6 +9,7 @@ public class program
  SuperMarket supermarket = new SuperMarket();
         Product prod = new Product("",8.8);
     
+        var listacatalogo = supermarket.ListCatalog();
 
     }
 
@@ -41,12 +42,12 @@ public class program
     {
         private Dictionary<string, Product> _catalog;
 
-        private Dictionary<string, int> _stock;
+        private Dictionary<string, int?> _stock;
 
         public SuperMarket()
         {
             _catalog = new Dictionary<string, Product>();
-            _stock = new Dictionary<string, int>();
+            _stock = new Dictionary<string, int?>();
 
             var banana = new Product("Banana", 4.99);
             var arroz = new Product("Arroz", 4.99);
@@ -69,8 +70,33 @@ public class program
             }
             else
             {
-                throw new KeyNotFoundException($"Product '{productName}' not found in catalog.");
+                return -1;
             }
+        }
+
+        public int GetStockByProductName(string productName)
+        {
+            if (_stock.Count > 0 && _stock.ContainsKey(productName))
+            {
+                return _stock[productName] ?? -1;
+            }
+            else
+            {
+                return -1;
+            }
+        }
+
+        public List<string> ListCatalog()
+        {
+            var list = new List<string>();
+
+            foreach (var item in _catalog)
+            {
+                string name = item.Key;        
+                double price = item.Value.Price ?? 0.0; 
+                list.Add($"{name} — R${price:0.00}");
+            }
+            return list;
         }
     }
 
