@@ -22,8 +22,6 @@ public class program
         {
             Name = name;
             Price = price;
-
-            price = 5.5;
         }
 
       public double GetPrice()
@@ -63,9 +61,16 @@ public class program
             _stock["Leite"] = 15;
         }
 
-        public double GetPrice(string productName)
+        public double GetPriceByProductName(string productName)
         {
-            return 0.0;
+            if(_catalog.ContainsKey(productName))
+            {
+                return _catalog[productName].GetPrice();
+            }
+            else
+            {
+                throw new KeyNotFoundException($"Product '{productName}' not found in catalog.");
+            }
         }
     }
 
