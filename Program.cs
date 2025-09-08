@@ -12,8 +12,9 @@ public class program
     
         var listacatalogo = supermarket.ListCatalog();
 
+        supermarket._catalog[""] = prod;
+
     }
-    
 
     public class Cinema
     {

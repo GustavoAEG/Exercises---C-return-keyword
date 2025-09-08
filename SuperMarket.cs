@@ -9,7 +9,7 @@ namespace Exercises___Fundamentals
 {
     public class SuperMarket
     {
-        private Dictionary<string, Product> _catalog;
+        public Dictionary<string, Product> _catalog;
 
         private Dictionary<string, int?> _stock;
 
